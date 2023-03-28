@@ -7,6 +7,10 @@ public class CameraRigRandomizer : MonoBehaviour
     private Transform cameraRig;
 
     [SerializeField] private bool shouldRandomizeCamera = true;
+    [SerializeField] private Vector3 MIN_POS_CONFIG = new Vector3(-340.0f, 40.0f, -265.0f);
+    [SerializeField] private Vector3 MAX_POS_CONFIG = new Vector3(350.0f, 80.0f, 105.0f);
+    [SerializeField] private float MIN_ROT_CONFIG = 55.0f;
+    [SerializeField] private float MAX_ROT_CONFIG = 90.0f;
 
     private Vector3 minPos;
     private Vector3 maxPos;
@@ -21,12 +25,12 @@ public class CameraRigRandomizer : MonoBehaviour
     void Start()
     {
         this.cameraRig = this.gameObject.transform;
-        this.minPos = new Vector3(-340.0f, 40.0f, -265.0f);
-        this.maxPos = new Vector3(350.0f, 80.0f, 105.0f);
+        this.minPos = this.MIN_POS_CONFIG;
+        this.maxPos = this.MAX_POS_CONFIG;
 
         //this.minRot = Vector3.zero;
-        this.minRot = new Vector3(55.0f, 55.0f, 55.0f);
-        this.maxRot = new Vector3(90.0f, 90.0f, 0.0f);
+        this.minRot = new Vector3(this.MIN_ROT_CONFIG, this.MIN_ROT_CONFIG, this.MIN_ROT_CONFIG);
+        this.maxRot = new Vector3(this.MAX_ROT_CONFIG, this.MAX_ROT_CONFIG, 0.0f);
 
         //this.RandomizeCamera();
     }
