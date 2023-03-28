@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class RandomObjectsSpawner : MonoBehaviour
 {
@@ -28,12 +31,14 @@ public class RandomObjectsSpawner : MonoBehaviour
 
     [Header("Scaling")]
     [SerializeField] private bool enableScaling = false;
+    [SerializeField] private bool uniformScaling = true;
+
     [SerializeField] private float MIN_SCALE_X = 1.0f;
-    [SerializeField] private float MAX_SCALE_X = 10.0f;
+    [SerializeField] private float MAX_SCALE_X = 4.0f;
     [SerializeField] private float MIN_SCALE_Y = 1.0f;
-    [SerializeField] private float MAX_SCALE_Y = 10.0f;
+    [SerializeField] private float MAX_SCALE_Y = 4.0f;
     [SerializeField] private float MIN_SCALE_Z = 1.0f;
-    [SerializeField] private float MAX_SCALE_Z = 10.0f;
+    [SerializeField] private float MAX_SCALE_Z = 4.0f;
 
 
 
@@ -56,6 +61,24 @@ public class RandomObjectsSpawner : MonoBehaviour
             newObject.transform.parent = this.transform;
             newObject.SetActive(true);
 
+            this.spawnList.Add(newObject);
+        }
+
+        this.Randomize();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        this.Randomize();
+    }
+
+    private void Randomize()
+    {
+        for (int i = 0; i < this.spawnList.Count; i++)
+        {
+            GameObject newObject = this.spawnList[i];
+
             if (this.enableRotation)
             {
                 Vector3 rotAngles = new Vector3(Random.Range(MIN_ROT_X, MAX_ROT_X), Random.Range(MIN_ROT_Y, MAX_ROT_Y), Random.Range(MIN_ROT_Z, MAX_ROT_Z));
@@ -65,16 +88,15 @@ public class RandomObjectsSpawner : MonoBehaviour
             if (this.enableScaling)
             {
                 Vector3 scale = new Vector3(Random.Range(MIN_SCALE_X, MAX_SCALE_X), Random.Range(MIN_SCALE_Y, MAX_SCALE_Y), Random.Range(MIN_SCALE_Z, MAX_SCALE_Z));
+
+                if (this.uniformScaling)
+                {
+                    float value = Random.Range(MIN_SCALE_X, MAX_SCALE_X);
+                    scale = new Vector3(value, value, value);
+                }
+
                 newObject.transform.localScale = scale;
             }
-
-            this.spawnList.Add(newObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
