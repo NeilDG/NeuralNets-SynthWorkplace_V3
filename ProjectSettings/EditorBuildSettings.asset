@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SamplePCGScene.unity
+    path: Assets/Scenes/PCGScene_WithShadows.unity
     guid: 3ea310403f013e942b0b89edb1e2a125
   - enabled: 0
     path: Assets/Scenes/PCGScene_2.unity

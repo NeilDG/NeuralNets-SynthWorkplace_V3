@@ -53,7 +53,7 @@ public class DatasetLoader
     private DatasetLoader()
     {
         this.imageFiles = Directory.GetFiles("X:/Places Dataset/", "*.jpg");
-        this.currentKey = CameraRecordingV2.frameCount % this.imageFiles.Length;
+        this.currentKey = CameraRecordingV2.Instance.GetCurrentFrameCount() % this.imageFiles.Length;
 
         Debug.Log("Set image ID to:" + this.currentKey);
         this.loadedImages = new Dictionary<int, Texture2DTracker>();
