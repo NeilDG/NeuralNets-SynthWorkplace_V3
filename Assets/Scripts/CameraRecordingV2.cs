@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
 /// <summary>
-/// For shadow scene dataset recording
+/// For scene dataset recording
 /// </summary>
+/// 
 public class CameraRecordingV2 : MonoBehaviour
 {
     private int frameCount = DomainParameters.OFFSET;
 
+    private string basePath = "X:/GithubProjects/NeuralNets-SynthWorkplace_V3/Recordings/";
     private static CameraRecordingV2 sharedInstance;
 
     public static CameraRecordingV2 Instance
@@ -35,17 +37,19 @@ public class CameraRecordingV2 : MonoBehaviour
 
     void Start()
     {
-        Random.InitState(0);
+        Random.InitState(DomainParameters.OFFSET);
     }
 
     void Update()
     {
         frameCount++;
-        if (frameCount > DomainParameters.MAX_IMAGES_TO_SAVE)
-        {
-            Debug.Log("Captured enough frames. Quitting application.");
-            Application.Quit();
-        }
+        //this.imageSynthesisInstance.Save("frame_"+this.frameCount+".png", 256, 256, this.basePath);
+
+        // if (frameCount > DomainParameters.MAX_IMAGES_TO_SAVE)
+        // {
+        //     Debug.Log("Captured enough frames. Quitting application.");
+        //     Application.Quit();
+        // }
     }
 
     public int GetCurrentFrameCount()

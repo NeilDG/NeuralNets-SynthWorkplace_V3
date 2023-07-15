@@ -9,6 +9,13 @@ public class CameraRigRandomizer : MonoBehaviour
 {
     private Transform cameraRig;
 
+    private enum CameraType
+    {
+        RGB_CAMERA,
+        DEPTH_CAMERA
+    }
+
+    [SerializeField] private CameraType cameraType = CameraType.RGB_CAMERA;
     [SerializeField] private bool shouldRandomizeCamera = true;
     [SerializeField] private bool shouldRandomizeLight = true;
     [SerializeField] private Light directionalLight;
@@ -27,7 +34,15 @@ public class CameraRigRandomizer : MonoBehaviour
         this.cameraRig = this.gameObject.transform;
 
         this.minRot = new Vector3(DomainParameters.MIN_ROT_CONFIG, DomainParameters.MIN_ROT_CONFIG, 0.0f);
-        this.maxRot = new Vector3(DomainParameters.MAX_ROT_CONFIG, DomainParameters.MAX_ROT_CONFIG, 0.0f);
+        if (this.cameraType == CameraType.RGB_CAMERA)
+        {
+            this.maxRot = new Vector3(DomainParameters.MAX_ROT_CONFIG, DomainParameters.MAX_ROT_CONFIG, 0.0f);
+        }
+        else
+        {
+            this.maxRot = new Vector3(DomainParameters.DEPTH_MAX_ROT_CONFIG, DomainParameters.DEPTH_MAX_ROT_CONFIG, 0.0f);
+        }
+        
 
         this.InitializeLightColors();
     }
@@ -56,9 +71,24 @@ public class CameraRigRandomizer : MonoBehaviour
     private void RandomizeCamera()
     {
         Vector3 localPos = this.cameraRig.localPosition;
-        localPos.x = Random.Range(DomainParameters.MIN_POS_CONFIG.x, DomainParameters.MAX_POS_CONFIG.x);
-        localPos.y = Random.Range(DomainParameters.MAX_POS_CONFIG.y, DomainParameters.MAX_POS_CONFIG.y);
-        localPos.z = Random.Range(DomainParameters.MIN_POS_CONFIG.z, DomainParameters.MAX_POS_CONFIG.z);
+        Vector3 minPosRange = Vector3.zero;
+        Vector3 maxPosRange = Vector3.zero;
+
+        if (this.cameraType == CameraType.RGB_CAMERA)
+        {
+            minPosRange = DomainParameters.MIN_POS_CONFIG;
+            maxPosRange = DomainParameters.MAX_POS_CONFIG;
+        }
+        else
+        {
+            minPosRange = DomainParameters.DEPTH_MIN_POS_CONFIG;
+            maxPosRange = DomainParameters.DEPTH_MAX_POS_CONFIG;
+        }
+        
+
+        localPos.x = Random.Range(minPosRange.x, maxPosRange.x);
+        localPos.y = Random.Range(minPosRange.y, maxPosRange.y);
+        localPos.z = Random.Range(minPosRange.z, maxPosRange.z);
 
         this.cameraRig.localPosition = localPos;
 
@@ -83,7 +113,7 @@ public class CameraRigRandomizer : MonoBehaviour
 
         int randLight = Random.Range(0, this.rwLightColors.Length);
         this.directionalLight.color = this.rwLightColors[randLight];
-        Debug.Log("<b> Light coords: " + lightTransform.ToString() + "</b>");
+        // Debug.Log("<b> Light coords: " + lightTransform.ToString() + "</b>");
 
         //this.PrintSphericalHarmonics(RenderSettings.ambientProbe);
     }
