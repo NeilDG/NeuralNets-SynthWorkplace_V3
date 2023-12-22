@@ -34,5 +34,7 @@ public class DynamicCityMaker : MonoBehaviour
 
         float randomDowntownSize = Random.Range(25, 200);
         this.cityGenerator.GenerateAllBuildings(true, randomDowntownSize);
+
+        GameObject.Find("City-Maker").transform.SetParent(this.transform);
     }
 }
