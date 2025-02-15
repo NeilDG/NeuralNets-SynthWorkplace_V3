@@ -15,8 +15,8 @@ public class DomainParameters
     // public static readonly Vector3 DEPTH_MAX_POS_CONFIG = new Vector3(350.0f, 20.0f, 105.0f);
 
     //values for X-rotated scene for surface normals
-    public static readonly Vector3 MIN_POS_CONFIG = new Vector3(-300.0f, -200.0f, -40.0f);
-    public static readonly Vector3 MAX_POS_CONFIG = new Vector3(300.0f, 200.0f, -5.0f);
+    public static readonly Vector3 MIN_POS_CONFIG = new Vector3(-150.0f, 10.0f, -200.0f);
+    public static readonly Vector3 MAX_POS_CONFIG = new Vector3(150.0f, 100.0f, 0.0f);
 
     public static readonly Vector3 DEPTH_MIN_POS_CONFIG = new Vector3(-300.0f, -200.0f, -20.0f);
     public static readonly Vector3 DEPTH_MAX_POS_CONFIG = new Vector3(300.0f, 200.0f, -5.0f);
