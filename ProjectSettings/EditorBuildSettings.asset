@@ -6,12 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PCGScene_WithShadows.unity
-    guid: 3ea310403f013e942b0b89edb1e2a125
-  - enabled: 0
-    path: Assets/Scenes/PCGScene_2.unity
-    guid: ebdb282c2df637a428bfa4cdbf83e4e2
-  - enabled: 0
-    path: Assets/Scenes/PCGScene_3.unity
-    guid: 43a8e78670e198743a685c57287cc3de
+    path: Assets/Scenes/CityScene-Base.unity
+    guid: c303ce66a87ade04291f48a02a2ba62a
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
