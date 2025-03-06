@@ -6,7 +6,7 @@ public class DomainParameters
 {
     public const int OFFSET = 0;
     public const int REFRESH_SCENE_PER_FRAME = 100;
-    public const int MAX_IMAGES_TO_SAVE = 1000;
+    public const int MAX_IMAGES_TO_SAVE = 15000;
 
     // public static readonly Vector3 MIN_POS_CONFIG = new Vector3(-340.0f, 40.0f, -265.0f);
     // public static readonly Vector3 MAX_POS_CONFIG = new Vector3(350.0f, 80.0f, 105.0f);
